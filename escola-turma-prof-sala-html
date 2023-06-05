@@ -1,0 +1,146 @@
+ceep@4191135516064:~$ mysql -u aluno -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 18
+Server version: 8.0.25-0ubuntu0.20.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2021, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use escola;
+Database changed
+mysql> create table escola;
+ERROR 4028 (HY000): A table must have at least one visible column.
+mysql> create table escola(
+    -> create table turmas(
+    -> id_turma int not null,
+    -> nome varchar(60),
+    -> quant_aluno int(75),
+    -> quant_carteira int(80),
+    -> primary key (id_turma));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'create table turmas(
+id_turma int not null,
+nome varchar(60),
+quant_aluno int(75' at line 2
+mysql> use escola;
+Database changed
+mysql> create table turma(
+    -> cgm_turma int not null,
+    -> nome varchar(60),
+    -> quant_alunos int(75),
+    -> quant_carteiras int (80),
+    -> primary key (cgm_turma));
+Query OK, 0 rows affected, 2 warnings (0,06 sec)
+
+mysql> create table professor(
+    -> cpf int(11) not null,
+    -> nome char(70),
+    -> telefone int(12),
+    -> idade int(100),
+    -> materia varchar(76),
+    -> primary key (cpf));
+Query OK, 0 rows affected, 3 warnings (0,06 sec)
+
+mysql> create table sala(
+    -> id_sala int(15) not null,
+    -> quant_alunos int(75),
+    -> localizacao varchar(80),
+    -> num_sala(90),
+    -> primary key (id_sala));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(90),
+primary key (id_sala))' at line 5
+mysql> create table sala(
+    -> id_sala int(15) not null,
+    -> quant_aluno int (75),
+    -> localizacao varchar(80),
+    -> num_sala int(90)
+    -> ,
+    -> primary key (id_sala));
+Query OK, 0 rows affected, 3 warnings (0,06 sec)
+
+mysql> show database;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'database' at line 1
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| Venda              |
+| aaaaaaaa           |
+| agendamento        |
+| agendamento16      |
+| agendamento17      |
+| agendamento18      |
+| agendamento19      |
+| agendamento20      |
+| agendamento21      |
+| agendamento22      |
+| atv1               |
+| atv2               |
+| atv3               |
+| aula2              |
+| aula2709           |
+| bercario           |
+| campeonato         |
+| escola             |
+| gabriel            |
+| information_schema |
+| inserindo          |
+| mysql              |
+| natacao            |
+| performance_schema |
+| phpmyadmin         |
+| profissional       |
+| sys                |
+| venda              |
+| zoologico          |
++--------------------+
+29 rows in set (0,00 sec)
+
+mysql> show tables;
++------------------+
+| Tables_in_escola |
++------------------+
+| professor        |
+| sala             |
+| turma            |
++------------------+
+3 rows in set (0,00 sec)
+
+mysql> show columns from professor;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| cpf      | int         | NO   | PRI | NULL    |       |
+| nome     | char(70)    | YES  |     | NULL    |       |
+| telefone | int         | YES  |     | NULL    |       |
+| idade    | int         | YES  |     | NULL    |       |
+| materia  | varchar(76) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+5 rows in set (0,01 sec)
+
+mysql> show columns from sala;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| id_sala     | int         | NO   | PRI | NULL    |       |
+| quant_aluno | int         | YES  |     | NULL    |       |
+| localizacao | varchar(80) | YES  |     | NULL    |       |
+| num_sala    | int         | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+4 rows in set (0,01 sec)
+
+mysql> show columns from turma;
++-----------------+-------------+------+-----+---------+-------+
+| Field           | Type        | Null | Key | Default | Extra |
++-----------------+-------------+------+-----+---------+-------+
+| cgm_turma       | int         | NO   | PRI | NULL    |       |
+| nome            | varchar(60) | YES  |     | NULL    |       |
+| quant_alunos    | int         | YES  |     | NULL    |       |
+| quant_carteiras | int         | YES  |     | NULL    |       |
++-----------------+-------------+------+-----+---------+-------+
+4 rows in set (0,00 sec)
